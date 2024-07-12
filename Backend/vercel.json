@@ -1,0 +1,6 @@
+{
+    "version" :2 ,
+    "bulids":[{ "src":"./server.js" , "use": "@vercal/node"}],
+    "routes":[{ "src":"/(.*)", "dest":"/"}]
+
+}
