@@ -1,7 +1,7 @@
 const uri = "mongodb+srv://princeofnorth80066:Prince123@cluster0.wemiyi8.mongodb.net/notesdb";
 const express = require('express');
 const mongoose = require('mongoose');
-
+//https://notesapp-suda.onrender.com/
 const app = express();
 app.use(express.json());
 
