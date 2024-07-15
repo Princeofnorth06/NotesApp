@@ -36,6 +36,7 @@ class NoteProvider with ChangeNotifier {
   }
 
   void fetchNote() async {
-    List<Note> fetchNote = await ApiServices.fetchNote('prince');
+    notes = await ApiServices.fetchNote('prince');
+    notifyListeners();
   }
 }

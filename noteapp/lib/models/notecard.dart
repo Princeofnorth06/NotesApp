@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:noteapp/models/note.dart';
@@ -14,6 +16,8 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<NoteProvider>(
       builder: (context, noteProvider, child) {
+        log(noteProvider.notes.length.toString());
+        log(index.toString());
         if (noteProvider.notes.isEmpty || index >= noteProvider.notes.length) {
           return Container(); // Return an empty container if index is out of range
         }

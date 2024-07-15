@@ -13,7 +13,8 @@ class Note {
       userid: map["userid"],
       title: map["title"],
       content: map["content"],
-      dateAdded: DateTime.parse(map["dateAdded"]),
+      dateAdded:
+          map["dateAdded"] != null ? DateTime.tryParse(map["dateAdded"]) : null,
     );
   }
 
@@ -23,7 +24,7 @@ class Note {
       "userid": userid,
       "title": title,
       "content": content,
-      "dateAdded": dateAdded!.toIso8601String(),
+      "dateAdded": dateAdded?.toIso8601String(),
     };
   }
 }
