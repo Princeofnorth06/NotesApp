@@ -5,11 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class Addnotepage extends StatefulWidget {
-  const Addnotepage(
-      {super.key, required this.isupdate, this.note, required this.index});
+  const Addnotepage({super.key, required this.isupdate, this.note});
   final bool isupdate;
   final Note? note;
-  final int index;
 
   @override
   State<Addnotepage> createState() => _AddnotepageState();

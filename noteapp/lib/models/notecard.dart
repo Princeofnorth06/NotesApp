@@ -18,10 +18,11 @@ class NoteCard extends StatelessWidget {
       builder: (context, noteProvider, child) {
         log(noteProvider.notes.length.toString());
         log(index.toString());
-        if (noteProvider.notes.isEmpty || index >= noteProvider.notes.length) {
+        if (noteProvider.notes.isEmpty) {
           return Container(); // Return an empty container if index is out of range
         }
         Note note = noteProvider.notes[index];
+        log(note.title.toString());
 
         return GestureDetector(
           onTap: () {
@@ -59,7 +60,6 @@ class NoteCard extends StatelessWidget {
                                     CupertinoPageRoute(
                                         builder: (context) => Addnotepage(
                                               isupdate: true,
-                                              index: index,
                                               note: note,
                                             )));
                               },

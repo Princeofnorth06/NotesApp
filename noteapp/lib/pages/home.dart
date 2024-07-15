@@ -12,8 +12,6 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-int i = 0;
-
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisCount: 2),
                   itemCount: noteprovider.notes.length,
                   itemBuilder: (context, index) {
-                    i = index;
                     return NoteCard(index: index);
                   });
         },
@@ -53,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 fullscreenDialog: true,
                 builder: (context) => Addnotepage(
                   isupdate: false,
-                  index: i,
                 ),
               ));
         },

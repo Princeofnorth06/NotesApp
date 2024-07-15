@@ -83,12 +83,9 @@ class ApiServices {
         body: body,
       );
 
-      log('Response status: ${response.statusCode}');
-      log('Response body: ${response.body}');
-
       if (response.statusCode == 200) {
         var decode = jsonDecode(response.body);
-        log('Decoded response: $decode');
+        log(decode.toString());
 
         List<Note> notes = [];
         for (var noteMap in decode) {
@@ -96,6 +93,7 @@ class ApiServices {
           log(newNote.toString());
           notes.add(newNote);
         }
+        log(notes.toList().toString());
 
         return notes;
       } else {
