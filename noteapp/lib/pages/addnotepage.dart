@@ -33,6 +33,7 @@ class _AddnotepageState extends State<Addnotepage> {
         widget.note!.content != contentcontroller.text) {
       widget.note!.title = titlecontroller.text;
       widget.note!.content = contentcontroller.text;
+      widget.note!.dateAdded = DateTime.now();
       Provider.of<NoteProvider>(context, listen: false)
           .updateNote(widget.note!);
     }

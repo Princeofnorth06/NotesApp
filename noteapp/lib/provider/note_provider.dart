@@ -5,6 +5,7 @@ import 'package:noteapp/models/note.dart';
 import 'package:noteapp/services/api_services.dart';
 
 class NoteProvider with ChangeNotifier {
+  bool isLaoding = true;
   List<Note> notes = [];
   List<bool> isTapped = [];
 
@@ -12,9 +13,15 @@ class NoteProvider with ChangeNotifier {
     fetchNote();
   }
 
+  void sortnotes() {
+    notes.sort((a, b) => b.dateAdded!.compareTo(a.dateAdded!));
+  }
+
   void addNote(Note note) {
     notes.add(note);
-    isTapped.add(true); // Default to false
+
+    isTapped.add(true);
+    sortnotes();
     notifyListeners();
     ApiServices.addNote(note);
   }
@@ -31,6 +38,7 @@ class NoteProvider with ChangeNotifier {
         notes.indexOf(notes.firstWhere((element) => element.id == note.id));
     if (ind != -1) {
       notes[ind] = note;
+      sortnotes();
       notifyListeners();
       ApiServices.addNote(note);
     }
@@ -40,6 +48,7 @@ class NoteProvider with ChangeNotifier {
     if (index >= 0 && index < notes.length) {
       notes.removeAt(index);
       isTapped.removeAt(index);
+      sortnotes();
       notifyListeners();
       ApiServices.deleteNote(note);
     }
@@ -47,8 +56,9 @@ class NoteProvider with ChangeNotifier {
 
   void fetchNote() async {
     notes = await ApiServices.fetchNote('prince');
-    isTapped = List.filled(
-        notes.length, false); // Initialize isTapped with same length as notes
+    isTapped = List.filled(notes.length, true, growable: true);
+    sortnotes();
+    isLaoding = false;
     log(notes.toString());
     notifyListeners();
   }

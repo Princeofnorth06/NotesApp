@@ -24,21 +24,27 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SafeArea(child: Consumer<NoteProvider>(
         builder: (BuildContext context, noteprovider, Widget? child) {
-          return noteprovider.notes.isEmpty
-              ? Center(
-                  child: Text(
-                    'No Notes Yet \n Tap on Add Button to Add Notes',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                )
-              : GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemCount: noteprovider.notes.length,
-                  itemBuilder: (context, index) {
-                    return NoteCard(index: index);
-                  });
+          return (noteprovider.isLaoding == false)
+              ? (noteprovider.notes.isEmpty
+                  ? Center(
+                      child: Text(
+                        'No Notes Yet \n Tap on Add Button to Add Notes',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  : GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                      itemCount: noteprovider.notes.length,
+                      itemBuilder: (context, index) {
+                        return NoteCard(index: index);
+                      }))
+              : Center(
+                  child: CircularProgressIndicator(),
+                );
         },
       )),
       floatingActionButton: FloatingActionButton(
